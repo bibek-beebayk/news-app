@@ -16,6 +16,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_filters',
+    'ckeditor',
+    'versatileimagefield',
 
     # System apps
     'apps.news',
