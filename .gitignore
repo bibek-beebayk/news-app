@@ -1,0 +1,9 @@
+*.pyc
+__pycache__
+.idea
+*.log
+*.sqlite3
+news_app/settings/env.py
+env/
+media/
+static/
