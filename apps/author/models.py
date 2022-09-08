@@ -20,7 +20,6 @@ class Author(models.Model):
         'image': {
             'small': 'thumbnail__320x180',
             'medium': 'thumbnail__640x360',
-            'og': 'og__1200x630',
         },
     }
 

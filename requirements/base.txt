@@ -5,3 +5,4 @@ django-versatileimagefield
 django-ckeditor
 django-cors-headers
 django-filter
+django-jazzmin

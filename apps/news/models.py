@@ -3,6 +3,7 @@ from versatileimagefield.fields import VersatileImageField
 
 from django.db import models
 from django.dispatch import receiver
+from datetime import datetime
 
 from news_app.libs.image import warm
 from apps.author.models import Author
@@ -12,6 +13,9 @@ class Category(models.Model):
     name = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
 
     def __str__(self) -> str:
         return self.name
@@ -32,7 +36,7 @@ class News(models.Model):
     slug = models.SlugField(max_length=256, blank=True)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, related_name='news')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='news')
-    published_at = models.DateTimeField()
+    published_at = models.DateTimeField(default=datetime.now)
     excerpt = models.TextField(blank=True, null=True)
     content = RichTextField()
     header_image = VersatileImageField(upload_to='news_headers/', blank=True, null=True)
@@ -46,6 +50,10 @@ class News(models.Model):
             'medium': 'thumbnail__640x360',
         }
     }
+
+    class Meta:
+        ordering = ['-published_at']
+        verbose_name_plural = 'News'
 
     def __str__(self) -> str:
         return self.title
