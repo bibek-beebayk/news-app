@@ -13,6 +13,8 @@ class Author(models.Model):
     slug = models.SlugField(max_length=256, blank=True)
     image = VersatileImageField(upload_to='authors/', blank=True, null=True)
     description = RichTextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     SIZES = {
         'image': {
