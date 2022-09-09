@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from datetime import datetime
 
 from news_app.libs.image import warm
+from news_app.libs.helper import get_excerpt
 from apps.author.models import Author
 
 
@@ -58,6 +59,11 @@ class News(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.excerpt:
+            self.excerpt = get_excerpt(self.content)
+        super().save(*args, **kwargs)
 
 
 @receiver(models.signals.post_save, sender=News)

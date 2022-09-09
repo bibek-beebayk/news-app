@@ -33,6 +33,6 @@ def warm_images(sender, instance, **kwargs):
     warm(instance)
 
 
-@receiver(models.signals.post_delete, sender=Author)
-def delete_images(sender, instance, **kwargs):
-    instance.image.delete_all_created_images()
+# @receiver(models.signals.post_delete, sender=Author)
+# def delete_images(sender, instance, **kwargs):
+#     instance.image.delete_all_created_images()
