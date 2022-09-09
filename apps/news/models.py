@@ -1,5 +1,5 @@
 from ckeditor.fields import RichTextField
-from versatileimagefield.fields import VersatileImageField
+from versatileimagefield.fields import VersatileImageField, PPOIField
 
 from django.db import models
 from django.dispatch import receiver
@@ -41,6 +41,7 @@ class News(models.Model):
     content = RichTextField()
     header_image = VersatileImageField(upload_to='news_headers/', blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True, related_name='news')
+    ppoi = PPOIField('Primary Point of Interest')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -59,6 +60,6 @@ class News(models.Model):
         return self.title
 
 
-@receiver(models.signals.post_save, sender=Author)
+@receiver(models.signals.post_save, sender=News)
 def warm_images(sender, instance, **kwargs):
     warm(instance)
