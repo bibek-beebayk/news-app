@@ -39,7 +39,7 @@ class News(models.Model):
     published_at = models.DateTimeField(default=datetime.now)
     excerpt = models.TextField(blank=True, null=True)
     content = RichTextField()
-    header_image = VersatileImageField(upload_to='news_headers/', blank=True, null=True)
+    header_image = VersatileImageField(upload_to='news_headers/', blank=True, null=True, ppoi_field='ppoi')
     tags = models.ManyToManyField(Tag, blank=True, related_name='news')
     ppoi = PPOIField('Primary Point of Interest')
     created_at = models.DateTimeField(auto_now_add=True)

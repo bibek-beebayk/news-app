@@ -11,7 +11,7 @@ class Author(models.Model):
     name = models.CharField(max_length=256)
     subtitle = models.CharField(max_length=256, blank=True, null=True)
     slug = models.SlugField(max_length=256, blank=True)
-    image = VersatileImageField(upload_to='authors/', blank=True, null=True)
+    image = VersatileImageField(upload_to='authors/', blank=True, null=True, ppoi_field='ppoi')
     ppoi = PPOIField('Primary Point of Interest')
     description = RichTextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
