@@ -8,7 +8,6 @@ class AuthorViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.G
     queryset = Author.objects.all().prefetch_related('news')
     serializer_class = AuthorDetailsSerializer
     lookup_field = 'slug'
-
     def get_serializer_class(self):
         if self.action == 'list':
             self.serializer_class = AuthorListSerializer

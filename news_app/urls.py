@@ -6,12 +6,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from apps.author import api as author_api
-# from apps.news import api as news_api
+from apps.news import api as news_api
 
 
 router = DefaultRouter()
 
 router.register('author', author_api.AuthorViewSet, basename='author')
+router.register('news', news_api.NewsViewSet, basename='news')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
