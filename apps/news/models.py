@@ -63,6 +63,8 @@ class News(models.Model):
     def save(self, *args, **kwargs):
         if not self.excerpt:
             self.excerpt = get_excerpt(self.content)
+        if not self.slug:
+            self.slug = self.title.lower().replace(' ', '-')
         super().save(*args, **kwargs)
 
 
