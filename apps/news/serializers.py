@@ -1,4 +1,3 @@
-from unicodedata import category
 from rest_framework import serializers
 
 from apps.news.models import News, Category, Tag
@@ -21,3 +20,9 @@ class NewsDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = ['title', 'subtitle', 'slug', 'author', 'category', 'published_at', 'excerpt', 'content', 'header_image', 'tags']
+
+
+class CategoriesListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('name', 'slug', 'created_at',)
