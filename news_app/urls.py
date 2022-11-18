@@ -13,6 +13,7 @@ router = DefaultRouter()
 
 router.register('author', author_api.AuthorViewSet, basename='author')
 router.register('news', news_api.NewsViewSet, basename='news')
+router.register('categories', news_api.CategoriesViewSet, basename='categories')
 
 
 urlpatterns = [
