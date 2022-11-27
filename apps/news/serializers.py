@@ -1,4 +1,3 @@
-from unicodedata import category
 from rest_framework import serializers
 
 from apps.news.models import News, Category, Tag

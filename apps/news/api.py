@@ -1,7 +1,7 @@
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 
-from apps.news.models import Category, News
+from apps.news.models import News, Category
 from apps.news.serializers import CategorySerializer, NewsListSerializer, NewsDetailsSerializer
 
 
