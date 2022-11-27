@@ -1,4 +1,5 @@
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from versatileimagefield.fields import VersatileImageField, PPOIField
 
 from django.db import models
@@ -39,7 +40,7 @@ class News(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='news')
     published_at = models.DateTimeField(default=datetime.now)
     excerpt = models.TextField(blank=True, null=True)
-    content = RichTextField()
+    content = RichTextUploadingField()
     header_image = VersatileImageField(upload_to='news_headers/', blank=True, null=True, ppoi_field='ppoi')
     tags = models.ManyToManyField(Tag, blank=True, related_name='news')
     ppoi = PPOIField('Primary Point of Interest')

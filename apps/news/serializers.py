@@ -10,7 +10,7 @@ class NewsListSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()
     class Meta:
         model = News
-        fields = ['title', 'slug', 'category', 'excerpt', 'header_image']
+        fields = ['title', 'slug', 'category', 'excerpt', 'header_image', 'published_at']
 
 
 class NewsDetailsSerializer(serializers.ModelSerializer):
@@ -21,3 +21,9 @@ class NewsDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = ['title', 'subtitle', 'slug', 'author', 'category', 'published_at', 'excerpt', 'content', 'header_image', 'tags']
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['name', 'slug']

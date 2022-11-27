@@ -82,3 +82,5 @@ REST_FRAMEWORK = {
 VERSATILEIMAGEFIELD_SETTINGS = {
     'create_images_on_demand': False,
 }
+
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'

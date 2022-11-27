@@ -13,11 +13,14 @@ router = DefaultRouter()
 
 router.register('author', author_api.AuthorViewSet, basename='author')
 router.register('news', news_api.NewsViewSet, basename='news')
+router.register('category', news_api.CategoryViewSet, basename='category')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+
 ]
 
 if settings.DEBUG:
