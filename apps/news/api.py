@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 from apps.news.models import News, Category
 from apps.news.serializers import CategorySerializer, NewsListSerializer, NewsDetailsSerializer
+from news_app.libs.pagination import paginate
 
 
 class NewsViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
@@ -20,8 +21,8 @@ class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets
     serializer_class = CategorySerializer
     lookup_field = 'slug'
 
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        news = News.objects.filter(category=instance).select_related('author', 'category').prefetch_related('tags')
-        serializer = NewsListSerializer(news, many=True)
-        return Response(serializer.data)
+    def retrieve(self, request, *args, **kwargs): 
+        instance = self.get_object() 
+        news = News.objects.filter(category=instance).select_related('author', 'category').prefetch_related('tags').order_by('-updated_at') 
+        serializer_class = NewsListSerializer 
+        return Response(paginate(news, request, serializer_class, page_size=20))

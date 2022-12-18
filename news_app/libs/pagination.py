@@ -26,3 +26,15 @@ class PageNumberPagination(BasePageNumberPagination):
         if self.aggregate:
             response_data['aggregate'] = self.aggregate
         return response_data
+
+
+def paginate(queryset, request, serializer_class, page_size=None):
+    paginator = PageNumberPagination()
+    if page_size:
+        paginator.page_size = page_size
+    page = paginator.paginate_queryset(queryset, request)
+    context = {'request': request}
+    serializer = serializer_class(page, many=True, context=context)
+    paginated_response = paginator.get_paginated_response(serializer.data)
+    data = paginated_response.data
+    return data
